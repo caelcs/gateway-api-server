@@ -1,0 +1,13 @@
+spring:
+  oauth2:
+    resource:
+      userInfoUri: http://127.0.0.1:9080/sso/user
+
+info:
+  app:
+    name: gatewayapi
+    description: Gateway API Rest Service
+
+server:
+  port: 8086
+  contextPath: /gatewayapi
