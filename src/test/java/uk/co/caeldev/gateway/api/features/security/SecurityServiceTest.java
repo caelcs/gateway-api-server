@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.web.client.RestTemplate;
+import uk.co.caeldev.gateway.api.config.OAuth2Settings;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -14,40 +16,45 @@ import static uk.org.fyodor.generators.RDG.string;
 public class SecurityServiceTest {
 
     @Mock
+    private RestTemplate restTemplate;
+
+    @Mock
     private TokenRepository tokenRepository;
+
+    @Mock
+    private OAuth2Settings oAuth2Settings;
 
     private SecurityService securityService;
 
     @Before
     public void testee() {
-        securityService = new SecurityService(tokenRepository);
+        securityService = new SecurityService(tokenRepository, restTemplate, oAuth2Settings);
     }
 
     @Test
-    public void shouldReturnTrueWhenTokenIsPresent() {
+    public void shouldReturnCurrentToken() throws Exception {
         //Given
-        final String token = string().next();
+        final String expectedToken = string().next();
 
         //And
-        given(tokenRepository.getCurrentToken()).willReturn(token);
+        given(tokenRepository.getCurrentToken()).willReturn(expectedToken);
 
         //When
-        boolean result = securityService.isTokenPresent();
+        String result = securityService.getCurrentToken();
 
         //Then
-        assertThat(result).isTrue();
+        assertThat(result).isNotNull();
+        assertThat(result).isNotEmpty();
     }
 
     @Test
-    public void shouldReturnFalseWhenTokenIsNotPresent() {
+    public void shouldGetToken() throws Exception {
         //Given
-        given(tokenRepository.getCurrentToken()).willReturn(null);
-
         //When
-        boolean result = securityService.isTokenPresent();
+        final String result = securityService.getToken();
 
         //Then
-        assertThat(result).isFalse();
+        assertThat(result).isNotNull();
+        assertThat(result).isNotEmpty();
     }
-
 }

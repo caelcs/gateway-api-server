@@ -3,6 +3,12 @@ spring:
     resource:
       userInfoUri: http://127.0.0.1:9080/sso/user
 
+oauth2:
+  url: http://127.0.0.1:9080/sso/oauth/authorize
+  client:
+      clientId: 1371573098test-477332204
+      clientSecret: testdata
+
 info:
   app:
     name: gatewayapi

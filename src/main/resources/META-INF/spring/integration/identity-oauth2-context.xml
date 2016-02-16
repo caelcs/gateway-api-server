@@ -7,19 +7,7 @@
 
     <int:channel id="requestTokenChannel"/>
 
-    <int:router input-channel="inChannel" expression="@securityService.isTokenPresent()">
-        <int:mapping value="true" channel="requestCachedTokenChannel"/>
-        <int:mapping value="false" channel="requestNewTokenChannel"/>
-    </int:router>
-
-    <int:channel id="requestCachedTokenChannel"/>
     <int:service-activator input-channel="requestTokenChannel" expression="@securityService.getCurrentToken()" output-channel="responseTokenChannel" />
-
-    <int:channel id="requestNewTokenChannel"/>
-    <int:chain input-channel="requestNewTokenChannel" output-channel="responseTokenChannel">
-        <int:service-activator expression="@securityService.getAuthorizationCode()"/>
-        <int:service-activator expression="@securityService.generateToken(payload)"/>
-    </int:chain>
 
     <int:channel id="responseTokenChannel"/>
 
