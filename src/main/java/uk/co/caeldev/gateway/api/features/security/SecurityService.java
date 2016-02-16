@@ -38,7 +38,7 @@ public class SecurityService {
     public String getToken() {
         HttpHeaders headers = new HttpHeaders();
         final String credentials = oAuth2Settings.getClient().getClientId() + ":" + oAuth2Settings.getClient().getClientSecret();
-        headers.set("Authorization", Base64.encodeBase64String(credentials.getBytes()));
+        headers.set("Authorization", "Basic " + Base64.encodeBase64String(credentials.getBytes()));
         HttpEntity<?> entity = new HttpEntity<>(headers);
 
         UriComponentsBuilder builder = fromHttpUrl(oAuth2Settings.getUrl())
