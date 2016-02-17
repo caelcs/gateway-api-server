@@ -17,13 +17,13 @@ import static uk.co.caeldev.gateway.api.features.registration.RegistrationResour
 public class RegistrationControllerTest {
 
     @Mock
-    private RegistrationService registrationService;
+    private UserService userService;
 
     private RegistrationController registrationController;
 
     @Before
     public void testee() {
-        registrationController = new RegistrationController(registrationService);
+        registrationController = new RegistrationController(userService);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class RegistrationControllerTest {
         final RegistrationResource registrationResource = registrationResourceBuilder().build();
 
         //And
-        given(registrationService.register(registrationResource)).willReturn(true);
+        given(userService.register(registrationResource)).willReturn(true);
 
         //When
         final ResponseEntity response = registrationController.register(registrationResource);
@@ -48,7 +48,7 @@ public class RegistrationControllerTest {
         final RegistrationResource registrationResource = registrationResourceBuilder().build();
 
         //And
-        given(registrationService.register(registrationResource)).willReturn(false);
+        given(userService.register(registrationResource)).willReturn(false);
 
         //When
         final ResponseEntity response = registrationController.register(registrationResource);

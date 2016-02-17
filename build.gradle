@@ -81,7 +81,6 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-aop")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-actuator")
-    compile("org.springframework.boot:spring-boot-starter-integration")
 
     compile("org.springframework.cloud:spring-cloud-security:${springCloudSecurityVersion}")
     compile("org.springframework.hateoas:spring-hateoas")

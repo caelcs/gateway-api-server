@@ -21,11 +21,11 @@ public class RegistrationController {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(RegistrationController.class);
 
-    private final RegistrationService registrationService;
+    private final UserService userService;
 
     @Autowired
-    public RegistrationController(final RegistrationService registrationService) {
-        this.registrationService = registrationService;
+    public RegistrationController(final UserService userService) {
+        this.userService = userService;
     }
 
     @RequestMapping(value = "/registrations",
@@ -33,7 +33,7 @@ public class RegistrationController {
             consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity register(@RequestBody final RegistrationResource registrationResource) {
         LOGGER.info("Register a new user");
-        final boolean isCreated = registrationService.register(registrationResource);
+        final boolean isCreated = userService.register(registrationResource.getUsername(), registrationResource.getPassword());
 
         if (!isCreated) {
             LOGGER.info("Registration failed.");

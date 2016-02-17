@@ -3,9 +3,8 @@ spring:
     client:
         clientId: 1371573098test-477332204
         clientSecret: testdata
-        accessTokenUri: http://127.0.0.1:9080/sso/oauth/access_token
+        accessTokenUri: http://127.0.0.1:9080/sso/oauth/token
         userAuthorizationUri: http://127.0.0.1:9080/sso/oauth/authorize
-        clientAuthenticationScheme: form
     resource:
       userInfoUri: http://127.0.0.1:9080/sso/user
 
