@@ -8,6 +8,10 @@ spring:
     resource:
       userInfoUri: http://127.0.0.1:9080/sso/user
 
+apps:
+  contentApiServer: http://127.0.0.1:8080/contentapi
+  oauth2Server: http://127.0.0.1:9080/sso
+
 info:
   app:
     name: gatewayapi
