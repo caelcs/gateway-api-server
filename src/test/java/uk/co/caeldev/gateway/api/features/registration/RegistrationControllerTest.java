@@ -32,7 +32,7 @@ public class RegistrationControllerTest {
         final RegistrationResource registrationResource = registrationResourceBuilder().build();
 
         //And
-        given(userService.register(registrationResource)).willReturn(true);
+        given(userService.register(registrationResource.getUsername(), registrationResource.getPassword())).willReturn(true);
 
         //When
         final ResponseEntity response = registrationController.register(registrationResource);
@@ -48,7 +48,7 @@ public class RegistrationControllerTest {
         final RegistrationResource registrationResource = registrationResourceBuilder().build();
 
         //And
-        given(userService.register(registrationResource)).willReturn(false);
+        given(userService.register(registrationResource.getUsername(), registrationResource.getPassword())).willReturn(false);
 
         //When
         final ResponseEntity response = registrationController.register(registrationResource);
