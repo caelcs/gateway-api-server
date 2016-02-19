@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.client.OAuth2RestOperations;
+import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import uk.co.caeldev.gateway.api.config.AppsSettings;
@@ -21,11 +23,11 @@ public class UserService {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
-    private final RestTemplate restTemplate;
+    private final OAuth2RestTemplate restTemplate;
     private final AppsSettings appsSettings;
 
     @Autowired
-    public UserService(final RestTemplate restTemplate,
+    public UserService(final OAuth2RestTemplate restTemplate,
                        final AppsSettings appsSettings) {
         this.restTemplate = restTemplate;
         this.appsSettings = appsSettings;

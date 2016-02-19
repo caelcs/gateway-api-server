@@ -7,6 +7,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.client.OAuth2RestOperations;
+import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.web.client.RestTemplate;
 import uk.co.caeldev.gateway.api.config.AppsSettings;
 
@@ -24,7 +26,7 @@ import static uk.org.fyodor.generators.RDG.string;
 public class UserServiceTest {
 
     @Mock
-    private RestTemplate restTemplate;
+    private OAuth2RestTemplate restTemplate;
 
     @Mock
     private AppsSettings appsSettings;

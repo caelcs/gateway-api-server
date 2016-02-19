@@ -1,4 +1,4 @@
-spring:
+security:
   oauth2:
     client:
         clientId: 1371573098test-477332204
